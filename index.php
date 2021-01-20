@@ -1,0 +1,1 @@
+<!-- All logic in public/index.php -->

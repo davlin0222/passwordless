@@ -1,0 +1,21 @@
+{
+  "name": "passwordless",
+  "version": "1.0.0",
+  "description": "Simple login without password",
+  "main": "public/index.php",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "David Lindström",
+  "license": "Unlicense",
+  "homepage": "",
+  "devDependencies": {
+    "@prettier/plugin-php": "^0.16.1",
+    "prettier": "^2.2.1"
+  },
+  "dependencies": {}
+}
