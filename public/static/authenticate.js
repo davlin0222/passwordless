@@ -17,7 +17,7 @@ async function emailForm_submit(e) {
     "https://creatorise.com/projects/simply-for-fun/passwordless/public/src/email.php",
     { method: "POST", body: emailForm_data }
   );
-  let text = await res.text();
+  let text = await res.json();
   console.log("emailForm_submit ~ res", res);
   console.log("emailForm_submit ~ text", text);
 
