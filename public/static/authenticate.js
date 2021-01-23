@@ -7,14 +7,35 @@ window.onload = () => {
     .addEventListener("submit", verifyForm_submit);
 };
 
-function emailForm_submit(e) {
-  document.querySelector(".verifyForm").classList.remove("_hidden");
+async function emailForm_submit(e) {
   e.preventDefault();
-  alert("emailForm_submit");
-  //let req = fetch("")
+  document.querySelector(".verifyForm").classList.remove("_hidden");
+  emailForm_data = new FormData(e.target);
+  // console.log("emailForm_submit ~ emailForm_data", ...emailForm_data);
+
+  let res = await fetch(
+    "https://creatorise.com/projects/simply-for-fun/passwordless/public/src/email.php",
+    { method: "POST", body: emailForm_data }
+  );
+  let text = await res.text();
+  console.log("emailForm_submit ~ res", res);
+  console.log("emailForm_submit ~ text", text);
+
+  // fetch(
+  //   "https://creatorise.com/projects/simply-for-fun/passwordless/public/src/email.php",
+  //   { method: "POST", body: emailForm_data }
+  // )
+  //   .then((res) => {
+  //     res.text();
+  //   })
+  //   .then((text) => {
+  //     console.log(text);
+  //   });
+
+  // alert("emailForm_submit");
 }
 function verifyForm_submit(e) {
   e.preventDefault();
-  alert("verifyForm_submit");
-  //let req = fetch("")
+  // alert("verifyForm_submit");
+  // let req = fetch("")
 }
