@@ -9,9 +9,25 @@
   </head>
   <body>
     <h1>Welcome</h1>
-    <form class="authenticationForm">
+    <form class="emailForm">
       <label for="email">Email</label>
-      <input type="email" name="email" id="email" required />
+      <br />
+      <input
+        type="email"
+        name="email"
+        id="email"
+        required
+        placeholder="name@example.com"
+      />
+      <input type="submit" value="Send Email" />
+    </form>
+    <form class="verifyForm _hidden">
+      <input
+        type="text"
+        name="verificationCode"
+        required
+        placeholder="Verification code"
+      />
       <input type="submit" value="Authenticate" />
     </form>
   </body>

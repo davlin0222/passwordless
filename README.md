@@ -11,10 +11,11 @@ Simple login without password
    servern som agerar tillfälligt lösenord. Detta lösenord skickas I
    KLARTEXT till användarens email. Lösenordet är varar i ca 2 min.
 
-3.
+3. Två alternativ
 
-A) Samtidigt omdirigeras användare till nytt fönster där kod skall skrivas
-in. B) Email kan också innehålla länk som måste klickas på.
+- A) Samtidigt omdirigeras användare till nytt fönster där kod skall skrivas
+  in.
+- B) Email kan också innehålla länk som måste klickas på.
 
 4. Kod sparas i session-variabel kopplat till emailadress, tid.
 
