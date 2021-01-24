@@ -3,9 +3,10 @@ header("Content-Type: application/json");
 
 session_start();
 $_SESSION["verificationCode"] = substr(md5(uniqid(rand(), true)), 0, 6);
+$_SESSION["email"] = $_POST["email"];
 
 $response = [
-  "email" => $_POST["email"],
+  "email" => $_SESSION["email"],
   "subject" => "Subject of email",
   "message" =>
     "Enter this verification code in browser \n Code: " .
