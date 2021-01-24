@@ -41,7 +41,9 @@ async function emailForm_submit(e) {
 async function verifyForm_submit(e) {
   e.preventDefault();
   // alert("verifyForm_submit");
-  document.querySelector(".accountSecrets").classList.remove("_hidden");
+  document
+    .querySelector(".pwlessAuth__accountSecrets")
+    .classList.remove("_hidden");
 
   verifyForm = new FormData(e.target);
   let res = await fetch("public/src/verifyCode.php", {

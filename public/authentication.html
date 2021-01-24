@@ -8,30 +8,42 @@
     <title>Passwordless</title>
   </head>
   <body>
-    <h1>Welcome</h1>
-    <form class="emailForm">
-      <label for="email">Email</label>
-      <br />
-      <input
-        type="email"
-        name="email"
-        id="email"
-        required
-        placeholder="name@example.com"
-      />
-      <input type="submit" value="Send Email" />
-    </form>
-    <form class="verifyForm _hidden">
-      <input
-        type="text"
-        name="verificationCode"
-        required
-        placeholder="Verification code"
-      />
-      <input type="submit" value="Authenticate" />
-    </form>
-    <div class="accountSecrets _hidden">
-      <h2>Account Secrets</h2>
-    </div>
+    <!-- <div class="backgroundDivider"></div> -->
+    <main class="pwlessAuth">
+      <h2 class="pwlessAuth__heading">Welcome to a Passwordless DEMO</h2>
+      <form class="pwlessAuth__form emailForm">
+        <input
+          class="pwlessAuth__form__userInput"
+          type="email"
+          name="email"
+          id="email"
+          required
+          placeholder="name@example.com"
+        />
+        <input
+          class="pwlessAuth__form__submit"
+          type="submit"
+          value="Send Email"
+        />
+      </form>
+      <form class="pwlessAuth__form _hidden verifyForm">
+        <input
+          class="pwlessAuth__form__userInput"
+          type="text"
+          name="verificationCode"
+          id="verificationCode"
+          required
+          placeholder="Verification code"
+        />
+        <input
+          class="pwlessAuth__form__submit"
+          type="submit"
+          value="Authenticate"
+        />
+      </form>
+      <div class="pwlessAuth__accountSecrets _hidden">
+        <h2>Account Secrets</h2>
+      </div>
+    </main>
   </body>
 </html>
