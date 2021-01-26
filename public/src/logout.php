@@ -1,7 +1,8 @@
 <?php
 session_start();
-logout();
+session_destroy();
 
-function logout()
-{
-}
+header("Content-Type: application/json");
+
+$respons = ["success" => true, "message" => "Account logged out"];
+echo $respons;

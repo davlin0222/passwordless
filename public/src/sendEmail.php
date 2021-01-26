@@ -28,7 +28,7 @@ function sendEmail($email)
       $verificationCode,
   ];
 
-  // mail($email["emailAddress"], $email["subject"], $email["message"]);
+  mail($email["emailAddress"], $email["subject"], $email["message"]);
 
   $isNewUser = true;
   $users = json_decode(file_get_contents("../../data/users.json"));
@@ -49,11 +49,11 @@ function sendEmail($email)
   return [
     "success" => true,
     "message" => "Email sent to " . $email["emailAddress"],
-    "debugRespons" => [
-      "email" => $email,
-      "code" => $verificationCode,
-      "isNewUser" => $isNewUser,
-    ],
+    // "debugRespons" => [
+    //   "email" => $email,
+    //   "code" => $verificationCode,
+    //   "isNewUser" => $isNewUser,
+    // ],
   ];
 }
 

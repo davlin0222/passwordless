@@ -6,6 +6,12 @@ window.onload = () => {
   document
     .querySelector(".verifyForm")
     .addEventListener("submit", verifyForm_submit);
+  document
+    .querySelector(".pwlessAuth__accountSecrets__logout")
+    .addEventListener("click", logout);
+  document
+    .querySelector(".pwlessAuth__accountSecrets__message")
+    .addEventListener("input", updateAccountSecret);
 };
 
 async function emailForm_submit(e) {
@@ -78,6 +84,8 @@ function checkIfLoggedIn() {
       console.log("checkIfLoggedIn ~ res", res);
       if (res.isLoggedIn) {
         renderAsLoggedIn(res.accountSecretMessage);
+      } else {
+        renderAsLoggedOut();
       }
     });
   });
@@ -96,6 +104,44 @@ function renderAsLoggedIn(accountSecretMessage) {
     .classList.add("_hidden");
   document.querySelector(".pwlessAuth__issues").classList.add("_hidden");
   document.querySelector(
-    ".pwlessAuth__accountSecrets__textarea"
+    ".pwlessAuth__accountSecrets__message"
   ).value = accountSecretMessage;
+}
+function renderAsLoggedOut() {
+  document
+    .querySelector(".pwlessAuth__accountSecrets")
+    .classList.add("_hidden");
+  document
+    .querySelector(".pwlessAuth__heading")
+    .classList.remove("_hidden");
+  document
+    .querySelectorAll(".pwlessAuth__form")[0]
+    .classList.remove("_hidden");
+  document
+    .querySelectorAll(".pwlessAuth__form")[1]
+    .classList.add("_hidden");
+  document.querySelector(".pwlessAuth__issues").classList.remove("_hidden");
+  document.querySelector(".pwlessAuth__accountSecrets__message").value = "";
+}
+
+function logout() {
+  fetch("public/src/logout.php").then((resJson) => {
+    resJson.json().then((res) => {
+      console.log("logout ~ res", res);
+    });
+  });
+  renderAsLoggedOut();
+}
+
+function updateAccountSecret(e) {
+  const formData = new FormData();
+  formData.append("accountSecret", e.target.value);
+  fetch("public/src/updateAccount.php?updateAccountSecret=true", {
+    method: "POST",
+    body: formData,
+  }).then((resJson) => {
+    resJson.json().then((res) => {
+      console.log("updateAccountSecret ~ res", res);
+    });
+  });
 }

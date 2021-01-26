@@ -84,11 +84,12 @@ button:active {
   float: right;
 }
 
-.pwlessAuth__accountSecrets__textarea {
+.pwlessAuth__accountSecrets__message {
   margin-top: 1rem;
   width: 100%;
   padding: 1rem;
   resize: vertical;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
 ._hidden {

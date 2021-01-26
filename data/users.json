@@ -1,7 +1,8 @@
 [
-  { "email": "davlin@creatorise.com", "verifiedEmail": true },
-  { "email": "info@creatorise.com", "verifiedEmail": true },
-  { "email": "mrpefr@gmail.com", "verifiedEmail": true },
-  { "email": "a@a.se", "verifiedEmail": false },
-  { "email": "a.a@a.se", "verifiedEmail": false }
+  {
+    "email": "davlin@creatorise.com",
+    "verifiedEmail": true,
+    "id": "172174480760106155b409f6.06418239",
+    "accountSecretMessage": ""
+  }
 ]

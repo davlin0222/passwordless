@@ -10,13 +10,15 @@ function checkIfLoggedIn()
 
   $users = json_decode(file_get_contents("../../data/users.json"));
   foreach ($users as $user) {
-    if ($user->id == $_SESSION["passwordless"]["loggedInEmail"]) {
-      $accountSecretMessage = $user->accountSecretMessage;
+    if ($user->email == $_SESSION["passwordless"]["loggedInEmail"]) {
+      return [
+        "isLoggedIn" => true,
+        "loggedInEmail" => $_SESSION["passwordless"]["loggedInEmail"],
+        "accountSecretMessage" => $user->accountSecretMessage,
+      ];
     }
   }
   return [
-    "isLoggedIn" => true,
-    "email" => $_SESSION["passwordless"]["loggedInEmail"],
-    "accountSecretMessage" => $accountSecretMessage,
+    "isLoggedIn" => false,
   ];
 }

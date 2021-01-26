@@ -10,8 +10,10 @@
   <body>
     <!-- <div class="backgroundDivider"></div> -->
     <main class="pwlessAuth">
-      <h2 class="pwlessAuth__heading">Welcome to a Passwordless DEMO</h2>
-      <form class="pwlessAuth__form emailForm">
+      <h2 class="pwlessAuth__heading _hidden">
+        Welcome to a Passwordless DEMO
+      </h2>
+      <form class="pwlessAuth__form emailForm _hidden">
         <input
           class="pwlessAuth__form__userInput"
           type="email"
@@ -47,10 +49,7 @@
           Account Secrets
           <button class="pwlessAuth__accountSecrets__logout">Logout</button>
         </h2>
-        <textarea
-          class="pwlessAuth__accountSecrets__textarea"
-          name="accountSecrets"
-        ></textarea>
+        <textarea class="pwlessAuth__accountSecrets__message"></textarea>
       </div>
     </main>
   </body>
