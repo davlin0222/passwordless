@@ -21,9 +21,10 @@ function sendEmail($email)
 
   $email = [
     "emailAddress" => $verificationEmail,
-    "subject" => "Subject of email",
+    "subject" =>
+      "🔑 Verify your email for Passwordless DEMO - creatorise.com",
     "message" =>
-      "Enter this verification code in browser \n Code: " .
+      "Hello Dear user, 🦌\nThank you for verifying your email address at the Passwordless DEMO by David Lindström \n\nPlease enter this verification code in the Passwordless DEMO\n\n\nVerification Code: " .
       $verificationCode,
   ];
 
