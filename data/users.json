@@ -1,1 +1,7 @@
-[]
+[
+  { "email": "davlin@creatorise.com", "verifiedEmail": true },
+  { "email": "info@creatorise.com", "verifiedEmail": true },
+  { "email": "mrpefr@gmail.com", "verifiedEmail": true },
+  { "email": "a@a.se", "verifiedEmail": false },
+  { "email": "a.a@a.se", "verifiedEmail": false }
+]

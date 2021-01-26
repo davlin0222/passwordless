@@ -7,21 +7,55 @@ window.onload = () => {
     .addEventListener("submit", verifyForm_submit);
 };
 
-function emailForm_submit(e) {
-  e.preventDefault();
-  // alert("emailForm_submit");
-  emailForm_data = new FormData(e.target);
-  formFetch("sendEmail", emailForm_data, ".verifyForm");
+async function emailForm_submit(e) {
+  const success = await pwlessAuth__form_submit(e, "sendEmail");
+  if (success) {
+    document.querySelector(".verifyForm").classList.remove("_hidden");
+  }
 }
 
-function verifyForm_submit(e) {
-  e.preventDefault();
-  // alert("verifyForm_submit");
-  verifyForm_data = new FormData(e.target);
-  formFetch("verifyCode", verifyForm_data, ".pwlessAuth__accountSecrets");
+async function verifyForm_submit(e) {
+  const success = await pwlessAuth__form_submit(e, "verifyCode");
+  if (success) {
+    document
+      .querySelector(".pwlessAuth__accountSecrets")
+      .classList.remove("_hidden");
+    document.querySelector(".pwlessAuth__heading").classList.add("_hidden");
+    document
+      .querySelectorAll(".pwlessAuth__form")[0]
+      .classList.add("_hidden");
+    document
+      .querySelectorAll(".pwlessAuth__form")[1]
+      .classList.add("_hidden");
+    document.querySelector(".pwlessAuth__issues").classList.add("_hidden");
+  } else {
+    document.querySelector(
+      ".pwlessAuth__issues"
+    ).innerHTML = `<li class="pwlessAuth__issues__message">${res.message}</li>`;
+  }
 }
 
-function formFetch(serverScriptName, formData, displayElementsWithClass) {
+async function pwlessAuth__form_submit(e, serverAction) {
+  e.preventDefault();
+  formData = new FormData(e.target);
+  const resJson = await fetch(`public/src/${serverAction}.php`, {
+    method: "POST",
+    body: formData,
+  });
+  const res = await resJson.json();
+  console.log("pwlessAuth__form_submit ~ res", res);
+  if (res.debugRespons) {
+    console.log(
+      "pwlessAuth__form_submit ~ res.debugRespons.code \n",
+      res.debugRespons.code
+    );
+  }
+  return res.success;
+}
+
+async function formFetch(serverScriptName, formData) {
+  document.querySelector(".pwlessAuth__issues").innerHTML = "";
+  let success;
   fetch(`public/src/${serverScriptName}.php`, {
     method: "POST",
     body: formData,
@@ -35,12 +69,11 @@ function formFetch(serverScriptName, formData, displayElementsWithClass) {
             res.debugRespons.code
           );
         }
-        if (res.success) {
-          document
-            .querySelector(displayElementsWithClass)
-            .classList.remove("_hidden");
-        }
+        success = res.success;
+        console.log("resJson.json ~ success", success);
       });
     })
     .catch((err) => console.log(err));
+  console.log("resJson.json ~ success", success);
+  return await success;
 }

@@ -8,21 +8,25 @@
 
 body {
   background-color: #121212;
-  // background: #063079;
   color: #eeeeee;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
     sans-serif;
 }
 
-input {
+input,
+textarea,
+button {
   background: #333333;
   color: #eeeeee;
   border: none;
 }
-input:hover {
+input:hover,
+textarea:hover,
+button {
   filter: brightness(1.1);
 }
-input[type="submit"]:active {
+input[type="submit"]:active,
+button:active {
   filter: brightness(0.7);
   outline: none;
 }
@@ -38,16 +42,15 @@ input[type="submit"]:active {
 }
 
 .pwlessAuth {
-  margin: auto;
-  margin-top: 17vh;
-  width: 350px;
+  margin: 17vh auto;
+  width: 370px;
+  padding: 1.9rem;
   background: #222222ee;
-  padding: 1.5rem;
 }
 
 .pwlessAuth__form {
-  height: 2.5rem;
   margin-top: 1.4rem;
+  height: 2.5rem;
   display: flex;
 }
 
@@ -58,12 +61,26 @@ input[type="submit"]:active {
 }
 
 .pwlessAuth__form__submit {
-  width: 6rem;
   margin-left: 0.7rem;
+  width: 6rem;
+}
+
+.pwlessAuth__issues {
+  margin: 1rem 0.1rem;
+  list-style-type: none;
 }
 
 .pwlessAuth__accountSecrets {
-  margin-top: 3rem;
+}
+.pwlessAuth__accountSecrets__logout {
+  padding: 0.6rem 0.8rem;
+  float: right;
+}
+.pwlessAuth__accountSecrets__textarea {
+  margin-top: 1rem;
+  width: 100%;
+  padding: 1rem;
+  resize: vertical;
 }
 
 ._hidden {

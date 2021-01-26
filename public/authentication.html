@@ -16,7 +16,7 @@
           class="pwlessAuth__form__userInput"
           type="email"
           name="email"
-          id="email"
+          -
           required
           placeholder="name@example.com"
         />
@@ -31,7 +31,7 @@
           class="pwlessAuth__form__userInput"
           type="text"
           name="verificationCode"
-          id="verificationCode"
+          -
           required
           placeholder="Verification code"
         />
@@ -43,7 +43,14 @@
       </form>
       <ul class="pwlessAuth__issues"></ul>
       <div class="pwlessAuth__accountSecrets _hidden">
-        <h2>Account Secrets</h2>
+        <h2>
+          Account Secrets
+          <button class="pwlessAuth__accountSecrets__logout">Logout</button>
+        </h2>
+        <textarea
+          class="pwlessAuth__accountSecrets__textarea"
+          name="accountSecrets"
+        ></textarea>
       </div>
     </main>
   </body>
