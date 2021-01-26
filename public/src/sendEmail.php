@@ -20,14 +20,14 @@ function sendEmail($email)
   $_SESSION["verificationRequestTime"] = time();
 
   $email = [
-    "emailAddress" => "davlin@creatorise.com", //$verificationEmail,
+    "emailAddress" => $verificationEmail,
     "subject" => "Subject of email",
     "message" =>
       "Enter this verification code in browser \n Code: " .
       $verificationCode,
   ];
 
-  // mail($email["emailAddress"], $email["subject"], $email["message"]);
+  mail($email["emailAddress"], $email["subject"], $email["message"]);
 
   $isNewUser = true;
   $users = json_decode(file_get_contents("../../data/users.json"));
@@ -44,11 +44,11 @@ function sendEmail($email)
   return [
     "success" => true,
     "message" => "Email sent to " . $email["emailAddress"],
-    "debugRespons" => [
-      "email" => $email,
-      "code" => $verificationCode,
-      "isNewUser" => $isNewUser,
-    ],
+    // "debugRespons" => [
+    //   "email" => $email,
+    //   "code" => $verificationCode,
+    //   "isNewUser" => $isNewUser,
+    // ],
   ];
 }
 

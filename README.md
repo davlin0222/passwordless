@@ -27,7 +27,5 @@ Simple login without password
 
 ### Kvar att göra
 
-- Lösenordet varar i ca 2 min.
-
 6. Om allt går bra kan vi på något sätt låta användare vara inloggad i
    systemet. T ex med sessions.
