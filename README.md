@@ -9,7 +9,7 @@ Simple login without password
 
 2. När användaren skickar iväg sin email i formuläret skapas en kod på
    servern som agerar tillfälligt lösenord. Detta lösenord skickas I
-   KLARTEXT till användarens email. Lösenordet är varar i ca 2 min.
+   KLARTEXT till användarens email. Lösenordet varar i ca 2 min.
 
 3. Två alternativ
 
@@ -21,6 +21,13 @@ Simple login without password
 
 5. När koden skall verifieras så jämförs koden med den i vår
    session-variabel. Där kollas också att tiden stämmer.
+
+6. Om allt går bra kan vi på något sätt låta användare vara inloggad i
+   systemet. T ex med sessions.
+
+### Kvar att göra
+
+- Lösenordet varar i ca 2 min.
 
 6. Om allt går bra kan vi på något sätt låta användare vara inloggad i
    systemet. T ex med sessions.
