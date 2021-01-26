@@ -7,7 +7,8 @@ echo json_encode(verifyCode($_POST["verificationCode"]));
 function verifyCode($verificationCode)
 {
   $ValidTimeDifferenceMax = 2 * 60;
-  $timeDifference = time() - $_SESSION["verificationRequestTime"];
+  $timeDifference =
+    time() - $_SESSION["passwordless"]["verificationRequestTime"];
 
   if ($timeDifference > $ValidTimeDifferenceMax) {
     return [
@@ -15,10 +16,14 @@ function verifyCode($verificationCode)
       "message" => "Waited to long ($timeDifference s), maximum is $ValidTimeDifferenceMax s",
     ];
   }
-  if ($verificationCode == $_SESSION["verificationCode"]) {
+  if ($verificationCode == $_SESSION["passwordless"]["verificationCode"]) {
+    $_SESSION["passwordless"]["isLoggedIn"] = true;
+    $_SESSION["passwordless"]["loggedInEmail"] =
+      $_SESSION["passwordless"]["verificationEmail"];
+
     $users = json_decode(file_get_contents("../../data/users.json"));
     foreach ($users as $user) {
-      if ($user->email == $_SESSION["verificationEmail"]) {
+      if ($user->email == $_SESSION["passwordless"]["verificationEmail"]) {
         $user->verifiedEmail = true;
       }
       $newUsers[] = $user;

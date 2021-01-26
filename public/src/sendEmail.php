@@ -13,11 +13,11 @@ function sendEmail($email)
       "message" => "Not a valid email address",
     ];
   }
-  $_SESSION["verificationEmail"] = $verificationEmail;
+  $_SESSION["passwordless"]["verificationEmail"] = $verificationEmail;
 
   $verificationCode = substr(md5(uniqid(rand(), true)), 0, 6);
-  $_SESSION["verificationCode"] = $verificationCode;
-  $_SESSION["verificationRequestTime"] = time();
+  $_SESSION["passwordless"]["verificationCode"] = $verificationCode;
+  $_SESSION["passwordless"]["verificationRequestTime"] = time();
 
   $email = [
     "emailAddress" => $verificationEmail,
@@ -38,7 +38,11 @@ function sendEmail($email)
     }
   }
   if ($isNewUser) {
-    $users[] = ["email" => $verificationEmail, "verifiedEmail" => false];
+    $users[] = [
+      "email" => $verificationEmail,
+      "verifiedEmail" => false,
+      "id" => uniqid(rand(), true),
+    ];
     file_put_contents("../../data/users.json", json_encode($users));
   }
 

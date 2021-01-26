@@ -1,4 +1,5 @@
 window.onload = () => {
+  checkIfLoggedIn();
   document
     .querySelector(".emailForm")
     .addEventListener("submit", emailForm_submit);
@@ -8,30 +9,23 @@ window.onload = () => {
 };
 
 async function emailForm_submit(e) {
-  const success = await pwlessAuth__form_submit(e, "sendEmail");
+  const { success } = await pwlessAuth__form_submit(e, "sendEmail");
   if (success) {
     document.querySelector(".verifyForm").classList.remove("_hidden");
   }
 }
 
 async function verifyForm_submit(e) {
-  const success = await pwlessAuth__form_submit(e, "verifyCode");
+  const { success, message } = await pwlessAuth__form_submit(
+    e,
+    "verifyCode"
+  );
   if (success) {
-    document
-      .querySelector(".pwlessAuth__accountSecrets")
-      .classList.remove("_hidden");
-    document.querySelector(".pwlessAuth__heading").classList.add("_hidden");
-    document
-      .querySelectorAll(".pwlessAuth__form")[0]
-      .classList.add("_hidden");
-    document
-      .querySelectorAll(".pwlessAuth__form")[1]
-      .classList.add("_hidden");
-    document.querySelector(".pwlessAuth__issues").classList.add("_hidden");
+    checkIfLoggedIn();
   } else {
     document.querySelector(
       ".pwlessAuth__issues"
-    ).innerHTML = `<li class="pwlessAuth__issues__message">${res.message}</li>`;
+    ).innerHTML = `<li class="pwlessAuth__issues__message">${message}</li>`;
   }
 }
 
@@ -50,7 +44,7 @@ async function pwlessAuth__form_submit(e, serverAction) {
       res.debugRespons.code
     );
   }
-  return res.success;
+  return { success: res.success, message: res.message };
 }
 
 async function formFetch(serverScriptName, formData) {
@@ -76,4 +70,32 @@ async function formFetch(serverScriptName, formData) {
     .catch((err) => console.log(err));
   console.log("resJson.json ~ success", success);
   return await success;
+}
+
+function checkIfLoggedIn() {
+  fetch("public/src/checkIfLoggedIn.php").then((resJson) => {
+    resJson.json().then((res) => {
+      console.log("checkIfLoggedIn ~ res", res);
+      if (res.isLoggedIn) {
+        renderAsLoggedIn(res.accountSecretMessage);
+      }
+    });
+  });
+}
+
+function renderAsLoggedIn(accountSecretMessage) {
+  document
+    .querySelector(".pwlessAuth__accountSecrets")
+    .classList.remove("_hidden");
+  document.querySelector(".pwlessAuth__heading").classList.add("_hidden");
+  document
+    .querySelectorAll(".pwlessAuth__form")[0]
+    .classList.add("_hidden");
+  document
+    .querySelectorAll(".pwlessAuth__form")[1]
+    .classList.add("_hidden");
+  document.querySelector(".pwlessAuth__issues").classList.add("_hidden");
+  document.querySelector(
+    ".pwlessAuth__accountSecrets__textarea"
+  ).value = accountSecretMessage;
 }
